@@ -76,6 +76,7 @@ body {
   position: absolute;
   transition: transform 1.5s ease-out; /* Add transition for smooth animations */
   transform-style: preserve-3d; /* Enable 3D transformations */
+  touch-action: none;
 }
 
 .side {
@@ -92,6 +93,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  touch-action: none;
 }
 
 .box.wobble {
