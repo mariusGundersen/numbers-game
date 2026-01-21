@@ -37,10 +37,9 @@ function createBoxes() {
     const dir = Math.random() * Math.PI * 2;
     const x = (Math.sin(dir) * num) / level;
     const y = (Math.cos(dir) * num) / level;
-    console.log(dir, x, y);
 
-    box.style.left = `calc(round(down, ${x} * calc(50vw - 60px), 60px) + 50vw)`;
-    box.style.top = `calc(round(down, ${y} * calc(50vh - 60px), 60px) + 50vh)`;
+    box.style.left = `calc(round(down, ${x} * calc(50vw - 100px), 60px) + 50vw + 20px)`;
+    box.style.top = `calc(round(down, ${y} * calc(50vh - 100px), 60px) + 50vh + 20px)`;
     // Set initial position off-screen
     box.style.transform = `rotateZ(${direction}deg) translateX(100vmax) translateZ(-50px) rotateX(${Math.random() * 3 + 2}turn) rotateY(${Math.random() * 3 + 2}turn) rotateZ(0deg)`;
     box.style.zIndex = level - num + 10;
@@ -73,7 +72,7 @@ function handleBoxClick(index) {
       "animationend",
       () => {
         box.remove();
-        if (currentIndex > numbers.length) {
+        if (index === numbers.length) {
           level++;
           createBoxes();
         }
