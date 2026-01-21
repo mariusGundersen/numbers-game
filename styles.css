@@ -1,0 +1,157 @@
+:root {
+  --bounce-easing: linear(
+    0,
+    0.004,
+    0.016,
+    0.035,
+    0.063,
+    0.098,
+    0.141 13.6%,
+    0.25,
+    0.391,
+    0.563,
+    0.765,
+    1,
+    0.891 40.9%,
+    0.848,
+    0.813,
+    0.785,
+    0.766,
+    0.754,
+    0.75,
+    0.754,
+    0.766,
+    0.785,
+    0.813,
+    0.848,
+    0.891 68.2%,
+    1 72.7%,
+    0.973,
+    0.953,
+    0.941,
+    0.938,
+    0.941,
+    0.953,
+    0.973,
+    1,
+    0.988,
+    0.984,
+    0.988,
+    1
+  );
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#game-container {
+  flex: 1 0 auto;
+  align-self: stretch;
+  perspective: 1000px; /* Add perspective for 3D effect */
+  overflow: hidden;
+  background: #182137;
+  transform-style: preserve-3d; /* Enable 3D transformations */
+  touch-action: none;
+}
+
+.box {
+  width: 60px;
+  height: 60px;
+  --background-color: #4caf50;
+  --hue: 0;
+  --opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  transition: transform 1.5s ease-out; /* Add transition for smooth animations */
+  transform-style: preserve-3d; /* Enable 3D transformations */
+}
+
+.side {
+  background-color: color-mix(
+    in srgb,
+    hsl(from #a55 var(--hue) s l),
+    black var(--mix, 0%)
+  );
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box.wobble {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.box.jump {
+  animation: jump 0.75s ease-in;
+  .side {
+    transition: opacity 0.25s 0.5s ease-in;
+    opacity: 0;
+  }
+}
+
+@keyframes shake {
+  10%,
+  20% {
+    rotate: -4deg;
+  }
+  30%,
+  50%,
+  70%,
+  80%,
+  90% {
+    rotate: 4deg;
+  }
+  40%,
+  60%,
+  85% {
+    rotate: -8deg;
+  }
+}
+
+@keyframes jump {
+  0% {
+    translate: 0 0 0;
+  }
+  25% {
+    translate: 0 0 30px;
+  }
+  50% {
+    translate: 0 0 0px;
+    rotate: 0deg;
+  }
+  70% {
+    translate: 0 0 40px;
+  }
+  80% {
+    translate: 0 0 50px;
+  }
+  100% {
+    translate: 0 0 -1000px;
+  }
+}
+
+#start-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
