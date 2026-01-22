@@ -90,6 +90,17 @@ function handleBoxClick(index) {
     setTimeout(() => {
       box.classList.remove("wobble");
     }, 500);
+    if (mistakes % 3 === 0) {
+      setTimeout(() => {
+        const box = document.querySelector(
+          `.box[data-index="${currentIndex}"]`,
+        );
+        box.classList.add("hint");
+        setTimeout(() => {
+          box.classList.remove("hint");
+        }, 500);
+      }, 500);
+    }
   }
 }
 
