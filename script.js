@@ -3,6 +3,7 @@ const gameContainer = document.getElementById("game-container");
 let level = 1;
 let numbers = [];
 let currentIndex = 1;
+let mistakes = 0;
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -73,13 +74,17 @@ function handleBoxClick(index) {
       () => {
         box.remove();
         if (index === numbers.length) {
-          level++;
+          if (mistakes === 0) {
+            level++;
+          }
+          mistakes = 0;
           createBoxes();
         }
       },
       { once: true },
     );
   } else {
+    mistakes++;
     const box = document.querySelector(`.box[data-index="${index}"]`);
     box.classList.add("wobble");
     setTimeout(() => {
